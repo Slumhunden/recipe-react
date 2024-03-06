@@ -4,12 +4,13 @@ import Recipe from "./recipes/Recipe";
 import Recipes from "./recipes/RecipeList";
 import RecipeForm from "./recipes/RecipeForm";
 import Login from "./security/Login";
-//import Logout from "./security/_Logout";
+import Logout from "./security/Logout";
 import Layout from "./Layout";
 import Home from "./Home";
 import "./App.css";
 import RecipesLayout from "./recipes/RecipesLayout";
 import RecipeList from "./recipes/RecipeList";
+import RequireAuth from "./security/RequireAuth";
 
 export default function App() {
   //const auth = useAuth();
@@ -22,12 +23,20 @@ export default function App() {
           <Route index element={<RecipesLayout />} /> // kan ikke få den her til at virke
           <Route path=":id" element={<Recipe />} />
         </Route>
+        <Route
+          path="add"
+          element={
+            <RequireAuth>
+              <RecipeForm />
+            </RequireAuth>
+          }
+        ></Route>
         <Route>
           <Route path="*" element={<h1>Not Found</h1>} />
         </Route>
         <Route path="/add" element={<RecipeForm />} />
         <Route path="/login" element={<Login />} />
-        {/* <Route path="/logout" element={<Logout />} /> */}
+        <Route path="/logout" element={<Logout />} />
       </Routes>
     </Layout>
   );
