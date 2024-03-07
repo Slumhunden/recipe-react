@@ -20,7 +20,13 @@ export default function NavHeader() {
           <li>
             <NavLink to="/add">Add</NavLink>
           </li>
+    
         )}
+        {auth.isLoggedInAs(["ADMIN"]) &&
+        <li>
+          <NavLink to="/add-category">Add Category</NavLink>
+        </li>
+        }
         <AuthStatus />
       </ul>
     </nav>
